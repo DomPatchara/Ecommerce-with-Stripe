@@ -12,16 +12,16 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   const price = product.default_price as Stripe.Price;
   return (
-    <Link href={"/product/1"} className="block h-full">
+    <Link href={`/products/${product.id}`} className="block h-full">
       <Card className="group hover:shadow-2xl transition duration-300 py-0 h-full flex flex-col border-gray-300 gap-0">
         {product.images && product.images[0] && (
           <div className="relative h-60 w-full">
             <Image
+              priority
               alt={product.name}
               src={product.images[0]}
-              layout="fill" // like absolute
-              objectFit="cover"
-              className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-t-lg"
+              fill // like absolute
+              className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-t-lg object-cover"
             />
           </div>
         )}
@@ -32,6 +32,10 @@ const ProductCard = ({ product }: Props) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col p-4 justify-between">
+          {product.description && (
+            <p className="text-gray-600 text-sm mb-2">{product.description}</p>
+          )}
+
           {price && price.unit_amount && (
             <p className="text-lg text-gray-900 font-semibold">{price.unit_amount / 100} Bath</p>
           )}
