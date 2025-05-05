@@ -34,6 +34,7 @@ export default async function Home() {
 
           {/** Image  */}
           <Image
+            priority
             alt="Banner Image"
             width={450}
             height={450}

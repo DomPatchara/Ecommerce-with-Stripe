@@ -30,6 +30,7 @@ const Carousel = ({ products }: Props) => {
         <div className="absolute inset-0">
           <div className="relative h-full w-full">
             <Image
+              priority
               alt={currentProduct.name}
               src={currentProduct.images[0]}
               fill

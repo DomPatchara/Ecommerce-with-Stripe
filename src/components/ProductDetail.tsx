@@ -29,23 +29,23 @@ const ProductDetail = ({ product }: Props) => {
   };
   return (
     <div className="h-[calc(100vh-60px)] w-full flex items-center justify-center">
-      <div className="border rounded-2xl shadow-2xl w-[80%] h-[80%] p-5 flex flex-col md:flex-row gap-6">
+      <div className="relative border rounded-2xl shadow-2xl w-[80%] h-[80%] p-5 flex flex-col md:flex-row gap-3">
         {/** 1. Image Product */}
-        {product.images && product.images[0] && (
-          <div className="relative h-full w-full md:w-[50%]">
-            <Image
-              priority
-              alt={product.name}
-              src={product.images[0]}
-              fill // like absolute
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-lg object-cover"
-            />
-          </div>
-        )}
+          {product.images && product.images[0] && (
+            <div className="relative h-full w-full ">
+              <Image
+                priority
+                alt={product.name}
+                src={product.images[0]}
+                fill // like absolute
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-lg object-cover"
+              />
+            </div>
+          )}
 
         {/** 2. Text Content & Button*/}
-        <div className="w-full md:w-[50%] flex flex-col gap-6 justify-center">
+        <div className="h-full w-full  flex flex-col gap-2 justify-center">
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-3xl font-bold">{product.name}</h1>
             {product.description && <p>{product.description}</p>}
