@@ -13,7 +13,7 @@ interface CartState {
   items: CartItem[];
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
-  clearItem: () => void;
+  clearCart: () => void;
 }
 
 const useCartStore = create<CartState>()(
@@ -55,7 +55,7 @@ const useCartStore = create<CartState>()(
                 .filter((item) => item.quantity > 0), // คัดแค่ qty ที่มากกว่า 0 เท่านั้น
             };
           }),
-        clearItem: () =>
+        clearCart: () =>
           set(() => {
             return { items: [] };
           }),

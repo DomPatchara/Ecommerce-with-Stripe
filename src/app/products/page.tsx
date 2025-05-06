@@ -16,3 +16,4 @@ const ProductPage = async () => {
 }
 
 export default ProductPage
+
