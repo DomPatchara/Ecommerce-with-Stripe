@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eccomerce with Stripe ( Next.JS )
+  Intregation Eccomerce กับ ระบบบริการชำระเงินของ Stripe โดยใช้ Next.JS
 
-## Getting Started
+## Why we should use Stripe payment  ?
 
-First, run the development server:
+- เป็นระบบบริการชำระเงินที่ง่าย และ intregate ง่ายสำหรับ developer
+- Support การชำระเงินหลายรูปแบบ — Card, Promptpay, Wallet, etc…
+- **Admin Dashboard** — add products  + summary transaction
+- **Secure** — จัดการตาม Security rule credit/debit card ให้ทุกอย่าง
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💸 Stripe Fees ( for 2025 )
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **3.65% + ฿10.00  per successful transaction**
+> 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚙️ Stripe Intregation ( 5 Steps )
 
-To learn more about Next.js, take a look at the following resources:
+### [ 1 . ] สร้างบัญชี Stripe — Login
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ https://dashboard.stripe.com/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### [ 2. ] Get API Key
 
-## Deploy on Vercel
+- สำหรับ API Key จะอยู่หน้า dashboard เลย —> เราจะใช้ตัว Test key สำหรับ Developer
+    - Publishable key ( client side )  : eg. pk_test_dfsfsdg…
+    - Secret key  ( server side ) :  eg. sk_test_51RKFQ62cj…
+    
+    > ขึ้นต้นด้วย xx_test_ = **Test key**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### [ 3. ] เลือกวิธี Intregation methods (2)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  3.1 /  **Stripe Checkout**  — ใช้ UI page payment จาก Stripe เลย ( ง่ายกว่า ) ✅
+
+  3.2 /  **Stripe Elements** — สำหรับ Custom UI payment page เอง 
+
+### [ 4. ] 🧪 Testing
+
+  สำหรับ test ว่าระบบชำระเงินใช้ได้ไหม ? —>  โดยใส่ test card number  + fake ข้อมูลอะไรก็ได้ 
+
+// after success payment // 
+
+หลังจากชำระเสร็จก็ควรส่ง user ไป success page ( custom by frontend ) ต่อ
+
+ https://docs.stripe.com/testing
+
+> **Test card number** : 4242 4242 4242 4242
+> 
+- Test ชำระเงินโดยไม่ใช้เงินจริง
+
+### [ 5. ]  Go Live
+
+  ใส่ “Live key” แทน Test key
+
+- **ใช้ sk_live_**  แทน ~~sk_test_~~
+
+### How to get Live key ?
+
+   [ 5.1 ] : ต้อง Verify account ก่อน — กรอกข้อมูล business details ( bank info, taxID, etc… )       
+
+<aside>
+❗
+
+ถ้าไม่ได้ยืนยันตัวตน หรือ Active payment —  Live mode จะใช้ไม่ได้ ( disable )
+
+</aside>
+
+   [ 5.2 ] : Toggle :  Test mode —> Live mode ( อยู่แถบบนๆสักมุมบน dashboard )
+
+   [ 5.3 ] : Get Live key — 
+
+   go to **Developer —> API Keys** 
+
+> กด “reveal live key token”
+
+
+## 🎯Live Demo ( Test Mode API Key )
+https://ecommerce-with-stripe-pi.vercel.app/ 
+
+## 📷 Screen Shot
+![image](https://github.com/user-attachments/assets/8a3a45a9-3c49-43ae-8372-34eb2d135a44)
