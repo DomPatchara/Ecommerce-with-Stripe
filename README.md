@@ -53,7 +53,7 @@
 
 - **ใช้ sk_live_**  แทน ~~sk_test_~~
 
-### How to get Live key ?
+ **How to get Live key ?**
 
    [ 5.1 ] : ต้อง Verify account ก่อน — กรอกข้อมูล business details ( bank info, taxID, etc… )       
 
