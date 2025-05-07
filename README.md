@@ -62,13 +62,10 @@
   
 </aside>
 
-   [ 5.2 ] : Toggle :  Test mode —> Live mode ( อยู่แถบบนๆสักมุมบน dashboard )
+   [ 5.2 ] : Toggle :  Test mode —> Live mode ( อยู่แถบบนของ dashboard )
 
-   [ 5.3 ] : Get Live key — 
+   [ 5.3 ] : Get Live key — go to **Developer —> API Keys** —> ขึ้นต้นด้วย xx_test_ = **Test key**
 
-   go to **Developer —> API Keys** 
-
-> กด “reveal live key token”
 
 ---
 
