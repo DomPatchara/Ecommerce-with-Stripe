@@ -34,6 +34,7 @@
 ### [ 3. ] เลือกวิธี Intregation methods (2)
 
   3.1 /  **Stripe Checkout**  — ใช้ UI page payment จาก Stripe เลย ( ง่ายกว่า ) ✅
+  
   3.2 /  **Stripe Elements** — สำหรับ Custom UI payment page เอง 
 
 ### [ 4. ] 🧪 Testing
@@ -58,8 +59,10 @@
    [ 5.1 ] : ต้อง Verify account ก่อน — กรอกข้อมูล business details ( bank info, taxID, etc… )       
 
 <aside>
+  
 ❗
 ถ้าไม่ได้ยืนยันตัวตน หรือ Active payment —  Live mode จะใช้ไม่ได้ ( disable )
+  
 </aside>
 
    [ 5.2 ] : Toggle :  Test mode —> Live mode ( อยู่แถบบนๆสักมุมบน dashboard )
