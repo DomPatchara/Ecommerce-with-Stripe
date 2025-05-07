@@ -46,8 +46,7 @@
 
  https://docs.stripe.com/testing
 
-> **Test card number** : 4242 4242 4242 4242
-> Test ชำระเงินโดยไม่ใช้เงินจริง
+> **Test card number** : 4242 4242 4242 4242 ----- Test ชำระเงินโดยไม่ใช้เงินจริง
 
 ### [ 5. ]  Go Live
   ใส่ “Live key” แทน Test key
