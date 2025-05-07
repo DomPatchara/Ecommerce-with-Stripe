@@ -8,14 +8,12 @@
 - **Admin Dashboard** — add products  + summary transaction
 - **Secure** — จัดการตาม Security rule credit/debit card ให้ทุกอย่าง
 
----
+
 
 ## 💸 Stripe Fees ( for 2025 )
 
 > **3.65% + ฿10.00  per successful transaction**
-> 
 
----
 
 ## ⚙️ Stripe Intregation ( 5 Steps )
 
@@ -72,6 +70,7 @@
 
 > กด “reveal live key token”
 
+---
 
 ## 🎯Live Demo ( Test Mode API Key )
 https://ecommerce-with-stripe-pi.vercel.app/ 
