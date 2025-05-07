@@ -9,7 +9,7 @@ interface ProductProps {
 const ProductPage = async ( { params }: ProductProps) => {
     const { id } = await params // ดึง dinamic id มา
     const productId = id 
-    const product =  await stripe.products.retrieve(productId, {
+    const product =  await stripe.products.retrieve(productId, {    // retrieve คือ fetch "one object" -- ส่วนใหญ่ใช้กับ fetch specific id
         expand: ["default_price"]  // ขอข้อมูลเพิ่มเติมส่วนของ Price จะได้ดึงมาใช้ได้
     })
 

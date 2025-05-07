@@ -32,8 +32,8 @@ export const checkoutAction = async (formData: FormData): Promise<void> => {
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
 
     // 3.2 สำหรับต้องการ Address ให้ลูกค้ากรอกที่อยู่ส่งของ
-    // billing_address_collection: "required",
-    // shipping_address_collection: { allowed_countries: ["TH"] },
+    billing_address_collection: "required",
+    shipping_address_collection: { allowed_countries: ["TH"] },
   });
 
     redirect(session.url!);   // sending user ไปยัง Stripe payment page ที่สร้าง UI ไว้เรียบร้อย

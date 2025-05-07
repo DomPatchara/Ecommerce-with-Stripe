@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="">
           <Link href="/checkout" className="relative">
             <FaShoppingCart size={25} />
-            <span className="absolute bottom-0 right-0 leading-3.5 text-center text-red-700 font-bold text-[10px]  translate-x-1 size-3.5 rounded-full bg-gray-200/80">
+            <span className="absolute bottom-0 right-0 leading-3.5 text-center text-green-800 font-bold text-[10px]  translate-x-1 size-3.5 rounded-full bg-gray-300">
               {count}
             </span>
           </Link>

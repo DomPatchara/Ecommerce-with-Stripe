@@ -6,8 +6,9 @@ import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { checkoutAction } from "./checkout-action";
+import Link from "next/link";
 
-const CheckoutPage = () => {
+const CheckoutPage =  () => {
   const { items, addItem, removeItem } = useCartStore();
   const total = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -16,17 +17,27 @@ const CheckoutPage = () => {
 
   if (total === 0 || items.length === 0) {
     return (
-      <div>
-        <h1> Your Cart is Empty</h1>
+      <div className="w-screen h-[80vh] flex flex-col items-center justify-center gap-2">
+        <h1 className="text-2xl font-bold text-gray-800">
+          Your Cart is Empty !
+        </h1>
+        <Link
+          href="/products"
+          className="px-4 py-2 bg-gray-500 rounded-2xl hover:bg-gray-600 text-lg font-semibold text-white"
+        >
+          Select some products
+        </Link>
       </div>
     );
   }
   return (
-    <div className="px-[7%] h-[calc(100vh-60px)] w-screen flex flex-col justify-center items-center gap-3 ">
+    <div className="px-[7%] py-10 h-[calc(100vh-60px)] w-screen flex flex-col justify-center items-center gap-3 ">
       <h1 className="text-3xl font-bold text-center"> Checkout </h1>
-      <Card className="w-xl mx-auto">
+      <Card className="w-xl mx-auto overflow-y-auto">
         <CardHeader className="p-2 bg-gray-100 rounded-xl">
-          <CardTitle className="text-2xl font-bold px-8">Order Summary</CardTitle>
+          <CardTitle className="text-2xl font-bold px-8">
+            Order Summary
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
@@ -79,16 +90,23 @@ const CheckoutPage = () => {
               </li>
             ))}
           </ul>
-
-          {/** Total All Price */}
-          <div className="text-xl font-bold text-center mt-5">Total: {(total / 100).toLocaleString()} Bath</div>
         </CardContent>
       </Card>
+      {/** Total All Price */}
+      <div className="w-xl py-2 rounded-2xl bg-gray-100 text-xl font-bold text-center mt-5">
+        Total: {(total / 100).toLocaleString()} Bath
+      </div>
 
       {/** Payment Button */}
       <form action={checkoutAction} className="w-xl mx-auto">
-        <input type="hidden"  name="items" value={JSON.stringify(items)} />
-        <Button type="submit"  variant={"default"} className="cursor-pointer w-full">Proceed to Payment</Button>
+        <input type="hidden" name="items" value={JSON.stringify(items)} />
+        <Button
+          type="submit"
+          variant={"default"}
+          className="cursor-pointer w-full"
+        >
+          Proceed to Payment
+        </Button>
       </form>
     </div>
   );

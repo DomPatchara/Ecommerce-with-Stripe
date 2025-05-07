@@ -5,6 +5,8 @@ import Stripe from "stripe";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import useCartStore from "@/store/store";
+import { useState, useEffect } from "react";
+import Toastify from "./Toastify";
 
 interface Props {
   product: Stripe.Product;
@@ -13,9 +15,24 @@ interface Props {
 const ProductDetail = ({ product }: Props) => {
   const price = product.default_price as Stripe.Price;
 
-  const { items, addItem, removeItem } = useCartStore();
-  const cartItem = items.find((item) => item.id === product.id);
-  const quantity = cartItem ? cartItem.quantity : 0;
+  const { addItem } = useCartStore();
+  // const cartItem = items.find((item) => item.id === product.id);
+  // const quantity = cartItem ? cartItem.quantity : 0;
+
+  const [showToast, setShowToast] = useState(false);
+  const [qty, setQty] = useState(0);
+
+  const increment = () => {
+    if (qty < 9) {
+      setQty((prev) => prev + 1);
+    }
+  };
+
+  const decrement = () => {
+    if (qty > 0) {
+      setQty((prev) => prev - 1);
+    }
+  };
 
   const onAddItem = () => {
     addItem({
@@ -24,25 +41,40 @@ const ProductDetail = ({ product }: Props) => {
       name: product.name,
       price: price.unit_amount as number,
       imageUrl: product.images ? product.images[0] : null,
-      quantity: 1,
+      quantity: qty,
     });
+
+    if ( qty > 0 ) {
+      setShowToast(true);
+      setQty(0);
+    }
   };
+
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
   return (
     <div className="h-[calc(100vh-60px)] w-full flex items-center justify-center">
       <div className="relative border rounded-2xl shadow-2xl w-[80%] h-[80%] p-5 flex flex-col md:flex-row gap-3">
         {/** 1. Image Product */}
-          {product.images && product.images[0] && (
-            <div className="relative h-full w-full ">
-              <Image
-                priority
-                alt={product.name}
-                src={product.images[0]}
-                fill // like absolute
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-lg object-cover"
-              />
-            </div>
-          )}
+        {product.images && product.images[0] && (
+          <div className="relative h-full w-full ">
+            <Image
+              priority
+              alt={product.name}
+              src={product.images[0]}
+              fill // like absolute
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="group-hover:opacity-90 transition-opacity duration-500 ease-in-out rounded-lg object-cover"
+            />
+          </div>
+        )}
 
         {/** 2. Text Content & Button*/}
         <div className="h-full w-full  flex flex-col gap-2 justify-center">
@@ -61,15 +93,15 @@ const ProductDetail = ({ product }: Props) => {
             <Button
               variant="outline"
               className="cursor-pointer"
-              onClick={() => removeItem(product.id)}
+              onClick={decrement}
             >
               -
             </Button>
-            <span className="text-lg font-semibold"> {quantity} </span>
+            <span className="text-lg font-semibold"> {qty} </span>
             <Button
               variant="outline"
               className="cursor-pointer"
-              onClick={onAddItem}
+              onClick={increment}
             >
               +
             </Button>
@@ -77,9 +109,16 @@ const ProductDetail = ({ product }: Props) => {
 
           {/**Add to Cart */}
           <div className="flex w-full justify-center">
-            <Button className="cursor-pointer w-60">Add to Cart</Button>
+            <Button className="cursor-pointer w-60" onClick={onAddItem}>
+              Add to Cart
+            </Button>
           </div>
         </div>
+      </div>
+      
+      {/** show notification เมื่อ added สินค้าลงตระกร้าแล้ว */}
+      <div className={`${showToast ? 'opacity-100' : 'opacity-0'} duration-500 transition-opacity z-50`}>
+        <Toastify message={'Successfully added to cart !'}/>
       </div>
     </div>
   );
