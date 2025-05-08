@@ -12,12 +12,12 @@ const Navbar = () => {
 
   return (
     <nav className="px-[7%] sticky top-0 z-50 bg-white shadow font-semibold">
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <Link href="/" className="hover:text-blue-600">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4 font-semibold">
+        <Link href="/" className="hover:text-blue-600 ">
           My Ecommerce
         </Link>
         <div className="hidden md:flex space-x-6">
-          <Link href="/">Home</Link>
+          <Link href="/" className="hover:text-blue-600">Home</Link>
           <Link href="/products" className="hover:text-blue-600">
             Product
           </Link>

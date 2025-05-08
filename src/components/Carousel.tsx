@@ -40,11 +40,11 @@ const Carousel = ({ products }: Props) => {
         </div>
       )}
       <CardContent className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
-        <CardTitle className="text-3xl font-bold text-white mb-2">
+        <CardTitle className="text-3xl font-bold text-white mb-2 text-center">
           {currentProduct.name}
         </CardTitle>
         {price && price.unit_amount && (
-          <p className="text-white text-xl">{price.unit_amount / 100} Bath</p>
+          <p className="text-white text-xl text-center">{price.unit_amount / 100} Bath</p>
         )}
       </CardContent>
     </Card>
