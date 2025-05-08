@@ -33,7 +33,7 @@ const CheckoutPage =  () => {
   return (
     <div className="px-[7%] py-10 h-[calc(100vh-60px)] w-screen flex flex-col justify-center items-center gap-3 overflow-hidden">
       <h1 className="text-3xl font-bold text-center"> Checkout </h1>
-      <Card className="md:w-xl mx-auto overflow-y-auto">
+      <Card className="w-full mx-auto overflow-y-auto">
         <CardHeader className="p-2 bg-gray-100 rounded-xl">
           <CardTitle className="text-2xl font-bold px-8">
             Order Summary
@@ -44,7 +44,7 @@ const CheckoutPage =  () => {
             {items.map((item, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center border-b pb-4"
+                className=" flex flex-col sm:flex-row justify-between items-center border-b pb-4"
               >
                 {/**Image */}
                 <div className="relative h-30 w-30">
@@ -92,13 +92,14 @@ const CheckoutPage =  () => {
           </ul>
         </CardContent>
       </Card>
+
       {/** Total All Price */}
-      <div className="w-sm md:w-xl py-2 rounded-2xl bg-gray-100 text-xl font-bold text-center mt-5">
+      <div className="w-full py-2 rounded-2xl bg-gray-100 text-xl font-bold text-center mt-5">
         Total: {(total / 100).toLocaleString()} Bath
       </div>
 
       {/** Payment Button */}
-      <form action={checkoutAction} className="w-sm md:w-xl mx-auto">
+      <form action={checkoutAction} className="w-full">
         <input type="hidden" name="items" value={JSON.stringify(items)} />
         <Button
           type="submit"
