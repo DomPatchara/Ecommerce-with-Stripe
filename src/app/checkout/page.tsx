@@ -50,6 +50,7 @@ const CheckoutPage =  () => {
                 <div className="relative h-30 w-30">
                   {item.imageUrl && (
                     <Image
+                      priority
                       alt={item.name}
                       src={item.imageUrl}
                       fill
